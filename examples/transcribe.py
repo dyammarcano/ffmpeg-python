@@ -14,18 +14,19 @@ logger = logging.getLogger(__file__)
 logger.setLevel(logging.INFO)
 
 
-parser = argparse.ArgumentParser(description='Convert speech audio to text using Google Speech API')
+parser = argparse.ArgumentParser(
+    description='Convert speech audio to text using Google Speech API')
 parser.add_argument('in_filename', help='Input filename (`-` for stdin)')
 
 
 def decode_audio(in_filename, **input_kwargs):
     try:
         out, err = (ffmpeg
-            .input(in_filename, **input_kwargs)
-            .output('-', format='s16le', acodec='pcm_s16le', ac=1, ar='16k')
-            .overwrite_output()
-            .run(capture_stdout=True, capture_stderr=True)
-        )
+                    .input(in_filename, **input_kwargs)
+                    .output('-', format='s16le', acodec='pcm_s16le', ac=1, ar='16k')
+                    .overwrite_output()
+                    .run(capture_stdout=True, capture_stderr=True)
+                    )
     except ffmpeg.Error as e:
         print(e.stderr, file=sys.stderr)
         sys.exit(1)

@@ -32,4 +32,5 @@ def generate_thumbnail(in_filename, out_filename, time, width):
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    generate_thumbnail(args.in_filename, args.out_filename, args.time, args.width)
+    generate_thumbnail(args.in_filename, args.out_filename,
+                       args.time, args.width)

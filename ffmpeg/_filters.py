@@ -214,7 +214,8 @@ def drawbox(stream, x, y, width, height, color, thickness=None, **kwargs):
     if thickness:
         kwargs['t'] = thickness
     return FilterNode(
-        stream, drawbox.__name__, args=[x, y, width, height, color], kwargs=kwargs
+        stream, drawbox.__name__, args=[
+            x, y, width, height, color], kwargs=kwargs
     ).stream()
 
 
@@ -392,7 +393,8 @@ def concat(*streams, **kwargs):
     if len(streams) % stream_count != 0:
         raise ValueError(
             'Expected concat input streams to have length multiple of {} (v={}, a={}); got {}'.format(
-                stream_count, video_stream_count, audio_stream_count, len(streams)
+                stream_count, video_stream_count, audio_stream_count, len(
+                    streams)
             )
         )
     kwargs['n'] = int(len(streams) / stream_count)
